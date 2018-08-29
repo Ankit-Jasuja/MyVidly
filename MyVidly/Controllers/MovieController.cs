@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using MyVidly.Models;
 
 namespace MyVidly.Controllers
 {
@@ -11,7 +8,11 @@ namespace MyVidly.Controllers
         // GET: Movie
         public ActionResult Index()
         {
-            return View();
+            var movie = new Movie
+            {
+                Name = "Pirte"
+            };
+            return View(movie);
         }
     }
 }
