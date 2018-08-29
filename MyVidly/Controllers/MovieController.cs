@@ -14,5 +14,11 @@ namespace MyVidly.Controllers
             };
             return View(movie);
         }
+
+        public ActionResult ByReleaseDate(int year, int month)
+        {
+            return Content(year + " " + month);
+
+        }
     }
 }
