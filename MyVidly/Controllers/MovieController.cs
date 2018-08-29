@@ -22,7 +22,7 @@ namespace MyVidly.Controllers
             {
                 Name = "Pirte"
             };
-            ViewData["movie"] = movie;
+            ViewBag.Mymovie = movie;
             return View();
         }
 
