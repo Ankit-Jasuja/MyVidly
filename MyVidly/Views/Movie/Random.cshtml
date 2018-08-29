@@ -1,0 +1,9 @@
+﻿@using MyVidly.Models
+
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@(((Movie)ViewData["movie"]).Name)</h2>
