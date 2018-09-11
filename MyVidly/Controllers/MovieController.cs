@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using MyVidly.Models;
 
 namespace MyVidly.Controllers
@@ -8,13 +9,14 @@ namespace MyVidly.Controllers
         // GET: Movie
         public ActionResult Index()
         {
-            var movie = new Movie
-            {
-                Name = "Pirte"
-            };
-            return View(movie);
+            var movies = GetMovies();
+            return View(movies);
         }
 
+        private List<Movie> GetMovies()
+        {
+            return new List<Movie> { new Movie() { Id = 1, Name = "Shark" }, new Movie() { Id = 5, Name = "Dolphin" } };
+        }
         //using ViewData
         public ActionResult Random()
         {
