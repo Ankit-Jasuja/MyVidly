@@ -195,6 +195,14 @@
     <Compile Include="Migrations\201809301456123_ApplyAnnotationToCustomerName.Designer.cs">
       <DependentUpon>201809301456123_ApplyAnnotationToCustomerName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201810051641392_AddMemberShipNameToMemberShipType.cs" />
+    <Compile Include="Migrations\201810051641392_AddMemberShipNameToMemberShipType.Designer.cs">
+      <DependentUpon>201810051641392_AddMemberShipNameToMemberShipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201810051645337_PopulateMemberShipName.cs" />
+    <Compile Include="Migrations\201810051645337_PopulateMemberShipName.Designer.cs">
+      <DependentUpon>201810051645337_PopulateMemberShipName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -293,6 +301,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809301456123_ApplyAnnotationToCustomerName.resx">
       <DependentUpon>201809301456123_ApplyAnnotationToCustomerName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810051641392_AddMemberShipNameToMemberShipType.resx">
+      <DependentUpon>201810051641392_AddMemberShipNameToMemberShipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201810051645337_PopulateMemberShipName.resx">
+      <DependentUpon>201810051645337_PopulateMemberShipName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

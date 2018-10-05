@@ -11,5 +11,6 @@ namespace MyVidly.Models
         public short SignUpfee { get; set; }
         public byte DurationInMonths { get; set; }
         public byte DiscountRate { get; set; }
+        public string MemberShipName { get; set; }
     }
 }
