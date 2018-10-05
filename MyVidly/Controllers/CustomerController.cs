@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using MyVidly.Models;
@@ -20,7 +21,10 @@ namespace MyVidly.Controllers
             //the query is executed when we iterate over customers object
             //this means query will not be executed immediately.
 
-            var customers = Context.Customers.ToList(); //query will be executed immediately
+            var customers = Context.Customers.Include(c=>c.MembershipType).ToList(); //query will be executed immediately
+
+            //by default:only customer object is loaded,their relative types are not loaded meaning MemberShip Type object is not loaded and hence it is null.
+            //So we want to load customers and membershipType together,this is called eager loading.(this is why we used include keyword here)
             return View(customers);
         }
         public ActionResult Details(int id)
