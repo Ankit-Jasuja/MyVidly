@@ -29,7 +29,7 @@ namespace MyVidly.Controllers
         }
         public ActionResult Details(int id)
         {
-            var customer = Context.Customers.FirstOrDefault(x => x.Id == id);
+            var customer = Context.Customers.Include(c => c.MembershipType).FirstOrDefault(x => x.Id == id);
             return View(customer);
         }
 
