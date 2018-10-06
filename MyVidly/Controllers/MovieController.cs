@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Data.Entity;
+using System.Linq;
 using System.Web.Mvc;
 using MyVidly.Models;
 
@@ -6,17 +7,25 @@ namespace MyVidly.Controllers
 {
     public class MovieController : Controller
     {
+        public ApplicationDbContext ApplicationDbContext { get; set; }
+
+        public MovieController()
+        {
+            ApplicationDbContext = new ApplicationDbContext();
+        }
+
         // GET: Movie
         public ActionResult Index()
         {
-            var movies = GetMovies();
+            var movies = ApplicationDbContext.Movies.Include(z => z.Genre).ToList();
             return View(movies);
         }
-
-        private List<Movie> GetMovies()
+        public ActionResult Details(int id)
         {
-            return new List<Movie> { new Movie() { Id = 1, Name = "Shark" }, new Movie() { Id = 5, Name = "Dolphin" } };
+            var movie = ApplicationDbContext.Movies.Include(z => z.Genre).SingleOrDefault(z => z.Id == id);
+            return View(movie);
         }
+       
         //using ViewData
         public ActionResult Random()
         {
