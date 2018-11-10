@@ -33,9 +33,9 @@ namespace MyVidly.Controllers
             return View(customer);
         }
 
-        private List<Customer> GetCustomers()
+        public ActionResult New()
         {
-             return new List<Customer>{ new Customer {Id = 1,Name = "Raju"},new Customer{ Id = 5, Name = "Ramesh" } };
+            return View();
         }
     }
 }
