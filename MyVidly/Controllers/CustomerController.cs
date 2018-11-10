@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using MyVidly.Models;
@@ -35,7 +34,12 @@ namespace MyVidly.Controllers
 
         public ActionResult New()
         {
-            return View();
+            var membershipTypes = Context.MembershipTypes.ToList();
+            var customerViewModel = new CustomerViewModel
+            {
+                MembershipTypes = membershipTypes,
+            };
+            return View(customerViewModel);
         }
     }
 }
