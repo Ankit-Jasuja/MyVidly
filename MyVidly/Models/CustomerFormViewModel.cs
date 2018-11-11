@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MyVidly.Models
 {
-    public class CustomerViewModel
+    public class CustomerFormViewModel
     {
         public IEnumerable<MembershipType> MembershipTypes { get; set; }
         public Customer Customer { get; set; }

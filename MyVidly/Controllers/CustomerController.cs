@@ -26,20 +26,36 @@ namespace MyVidly.Controllers
             //So we want to load customers and membershipType together,this is called eager loading.(this is why we used include keyword here)
             return View(customers);
         }
+
         public ActionResult Details(int id)
         {
             var customer = Context.Customers.Include(c => c.MembershipType).FirstOrDefault(x => x.Id == id);
             return View(customer);
         }
+        public ActionResult Edit(int id)
+        {
+            var customer = Context.Customers.Include(c => c.MembershipType).FirstOrDefault(x => x.Id == id);
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+            var membershipTypes = Context.MembershipTypes.ToList();
+            var customerViewModel = new CustomerFormViewModel
+            {
+                Customer= customer,
+                MembershipTypes = membershipTypes
+            };
+            return View("CustomerForm", customerViewModel);
+        }
 
         public ActionResult New()
         {
             var membershipTypes = Context.MembershipTypes.ToList();
-            var customerViewModel = new CustomerViewModel
+            var customerViewModel = new CustomerFormViewModel
             {
                 MembershipTypes = membershipTypes,
             };
-            return View(customerViewModel);
+            return View("CustomerForm", customerViewModel);
         }
 
         [HttpPost]
