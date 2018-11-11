@@ -61,8 +61,20 @@ namespace MyVidly.Controllers
         [HttpPost]
         public ActionResult Create(Customer customer)
         {
-            Context.Customers.Add(customer);
-            Context.SaveChanges();
+            if (customer.Id == 0)
+            {
+                Context.Customers.Add(customer);
+                Context.SaveChanges();
+            }
+            else
+            {
+                var customertoEdit = Context.Customers.Single(x => x.Id == customer.Id);
+                customertoEdit.Name = customer.Name;
+                customertoEdit.BirthDate = customer.BirthDate;
+                customertoEdit.IsSubscribedToNewsLetter = customer.IsSubscribedToNewsLetter;
+                customertoEdit.BirthDate = customer.BirthDate;
+                Context.SaveChanges();
+            }
             return RedirectToAction("Index");
         }
     }
