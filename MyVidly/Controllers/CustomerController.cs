@@ -41,5 +41,13 @@ namespace MyVidly.Controllers
             };
             return View(customerViewModel);
         }
+
+        [HttpPost]
+        public ActionResult Create(Customer customer)
+        {
+            Context.Customers.Add(customer);
+            Context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
