@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using MyVidly.Models;
@@ -20,10 +21,37 @@ namespace MyVidly.Controllers
             var movies = ApplicationDbContext.Movies.Include(z => z.Genre).ToList();
             return View(movies);
         }
-        public ActionResult Details(int id)
+        public ActionResult Edit(int id)
         {
-            var movie = ApplicationDbContext.Movies.Include(z => z.Genre).SingleOrDefault(z => z.Id == id);
-            return View(movie);
+            var movieFormViewModel = new MovieFormViewModel();
+            movieFormViewModel.Movie = ApplicationDbContext.Movies.Include(z => z.Genre).SingleOrDefault(z => z.Id == id);
+            movieFormViewModel.Genre = ApplicationDbContext.Genres.ToList();
+            return View("MovieForm", movieFormViewModel);
+        }
+        public ActionResult New()
+        {
+            var movieFormViewModel = new MovieFormViewModel();
+            movieFormViewModel.Genre = ApplicationDbContext.Genres.ToList();
+            return View("MovieForm", movieFormViewModel);
+        }
+        public ActionResult Submit(Movie movie)
+        {
+            if (movie.Id == 0)
+            {
+                ApplicationDbContext.Movies.Add(movie);
+                ApplicationDbContext.SaveChanges();
+            }
+            else
+            {
+                var movieToUpdate = ApplicationDbContext.Movies.Single(z => z.Id == movie.Id);
+                movieToUpdate.Name = movie.Name;
+                movieToUpdate.NumberInStock = movie.NumberInStock;
+                movieToUpdate.GenreId = movie.GenreId;
+                movieToUpdate.ReleaseDate = movie.ReleaseDate;
+                movieToUpdate.DateAdded = movie.DateAdded;
+                ApplicationDbContext.SaveChanges();
+            }
+            return RedirectToAction("Index");
         }
        
         //using ViewData
