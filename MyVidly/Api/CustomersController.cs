@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
@@ -24,29 +25,29 @@ namespace MyVidly.Api
             return customerDtoList;
         }
 
-        public CustomerDto GetCustomer(int id)
+        public IHttpActionResult GetCustomer(int id)
         {
             var customer = _context.Customers.SingleOrDefault(z => z.Id == id);
             if (customer == null)
             {
-              throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
             var customerDto = Mapper.Map<CustomerDto>(customer);
-            return customerDto;
+            return Ok(customerDto);
         }
 
         [HttpPost]
-        public CustomerDto Create(CustomerDto customerDto)
+        public IHttpActionResult Create(CustomerDto customerDto)
         {
             if (!ModelState.IsValid)
             {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
             var customer = Mapper.Map<Customer>(customerDto);
             _context.Customers.Add(customer);
             _context.SaveChanges();
             customerDto.Id = customer.Id;
-            return customerDto;
+            return Created(new Uri(Request.RequestUri + "/" + customer.Id), customerDto);//convention says status 201 is appropriate when new entity is created,with location link
         }
 
         [HttpPut]
