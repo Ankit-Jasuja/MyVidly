@@ -33,6 +33,8 @@
 {
     <script>
         $(document).ready(function () {
+            $("#Customers").dataTable();
+
             $("#Customers").on("click", ".js-delete", function () {
                     var button = $(this);
                     bootbox.confirm("Are you sure you want to delete this customer?",
