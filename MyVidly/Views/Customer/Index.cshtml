@@ -33,7 +33,7 @@
 {
     <script>
         $(document).ready(function () {
-            $("#Customers").on("click", ".js-delete",function () {
+            $("#Customers .js-delete").on("click",function () {
                     var button = $(this);
                     bootbox.confirm("Are you sure you want to delete this customer?",
                         function(result) {
