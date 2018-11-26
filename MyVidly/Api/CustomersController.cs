@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
@@ -20,7 +21,7 @@ namespace MyVidly.Api
 
         public IEnumerable<Customer> GetCustomers()
         {
-           return _context.Customers.ToList();
+           return _context.Customers.Include(m=>m.MembershipType).ToList();
             //var customerDtoList = Mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerDto>>(customers);
             //return customerDtoList;
         }
