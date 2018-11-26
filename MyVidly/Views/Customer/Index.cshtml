@@ -16,16 +16,6 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var a in Model)
-        {
-            <tr>
-                <td>@Html.ActionLink(a.Name, "Edit", "Customer", new { id = a.Id }, null)</td>
-                <td>@a.MembershipType.MemberShipName</td>
-                <td>
-                    <button data-customer-id="@a.Id" class="btn-link js-delete">Delete</button>
-                </td>
-            </tr>
-        }
     </tbody>
 </table>
 
@@ -33,7 +23,30 @@
 {
     <script>
         $(document).ready(function () {
-            $("#Customers").dataTable();
+            $("#Customers").dataTable({
+                ajax: {
+                    url: "/api/Customers/",
+                    dataSrc:""
+                },
+                columns:[
+                    {
+                        data: "Name",
+                        render:function(data,type,customer) {
+                            return "<a href= '/Customer/Edit/" + customer.Id + "'>" + customer.Name + "</a>";
+                        }
+                    },
+                    {
+                        data:"Name"
+                    }, 
+                    {
+                        data: "Id",
+                        render:function(data) {
+                            return "<button class='btn-link js-delete' data-customer-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+                
+            });
 
             $("#Customers").on("click", ".js-delete", function () {
                     var button = $(this);

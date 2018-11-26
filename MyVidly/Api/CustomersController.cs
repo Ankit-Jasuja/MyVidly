@@ -18,11 +18,11 @@ namespace MyVidly.Api
             _context = new ApplicationDbContext();
         }
 
-        public IEnumerable<CustomerDto> GetCustomers()
+        public IEnumerable<Customer> GetCustomers()
         {
-            var customers = _context.Customers.ToList();
-            var customerDtoList = Mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerDto>>(customers);
-            return customerDtoList;
+           return _context.Customers.ToList();
+            //var customerDtoList = Mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerDto>>(customers);
+            //return customerDtoList;
         }
 
         public IHttpActionResult GetCustomer(int id)
