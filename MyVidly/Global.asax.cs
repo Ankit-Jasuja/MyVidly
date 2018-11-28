@@ -21,6 +21,7 @@ namespace MyVidly
             {
                 cfg.CreateMap<Customer, CustomerDto>();
                 cfg.CreateMap<CustomerDto, Customer>();
+                cfg.CreateMap<Movie, Movie>();
             });
         }
     }
