@@ -30,10 +30,11 @@
 {
     <script>
         $(document).ready(function() {
-            var button = $(this);
+            
             $(".js-link").on("click",
-                function() {
-                    if (confirm("Are you sure you want to delete this movie?")) {
+                function () {
+                    var button = $(this);
+                    if (confirm("Are you sure you want to delete this movie?")) 
                         $.ajax({
                             url: "/api/Movies/" + $(this).attr("data-movie-id"),
                             method: "DELETE",
@@ -41,7 +42,6 @@
                                 button.parents("tr").remove();
                             }
                         });
-                    }
                 });
         });
     </script>
