@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
 using AutoMapper;
@@ -16,7 +17,7 @@ namespace MyVidly.Api
         }
         public IEnumerable<Movie> GetMovies()
         {
-            return _context.Movies.ToList();
+            return _context.Movies.Include(m=>m.Genre).ToList();
         }
         public IHttpActionResult GetMovie(int id)
         {
