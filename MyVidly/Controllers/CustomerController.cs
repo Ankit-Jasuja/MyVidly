@@ -5,7 +5,6 @@ using MyVidly.Models;
 
 namespace MyVidly.Controllers
 {
-    [Authorize]
     public class CustomerController : Controller
     {
         public ApplicationDbContext Context { get; set; }
