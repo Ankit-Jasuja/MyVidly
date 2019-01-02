@@ -5,6 +5,7 @@ using MyVidly.Models;
 
 namespace MyVidly.Controllers
 {
+    [Authorize]
     public class CustomerController : Controller
     {
         public ApplicationDbContext Context { get; set; }
@@ -14,6 +15,7 @@ namespace MyVidly.Controllers
         }
         
         // GET: Customer
+
         public ActionResult Index()
         {
             // var customers = Context.Customers;//when this line is executed,entity framework is not going to query the data base,this is called defered execution
