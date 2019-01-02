@@ -154,10 +154,10 @@ namespace MyVidly.Controllers
                 if (result.Succeeded)
                 {
                     //temp code
-                    var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
-                    var roleManager = new RoleManager<IdentityRole>(roleStore);
-                    await roleManager.CreateAsync(new IdentityRole("CanManageMovies"));
-                    await UserManager.AddToRolesAsync(user.Id, "CanManageMovies");
+                    //var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    //var roleManager = new RoleManager<IdentityRole>(roleStore);
+                    //await roleManager.CreateAsync(new IdentityRole("CanManageMovies"));
+                    //await UserManager.AddToRolesAsync(user.Id, "CanManageMovies");
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
