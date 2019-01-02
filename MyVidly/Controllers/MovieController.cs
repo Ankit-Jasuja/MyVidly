@@ -18,7 +18,10 @@ namespace MyVidly.Controllers
         public ActionResult Index()
         {
             var movies = ApplicationDbContext.Movies.Include(z => z.Genre).ToList();
-            return View(movies);
+            if(User.IsInRole(MovieRoles.CanManageMovies.ToString()))
+            return View("List",movies);
+
+            return View("ReadOnlyList", movies);
         }
         public ActionResult Edit(int id)
         {
@@ -27,6 +30,8 @@ namespace MyVidly.Controllers
             movieFormViewModel.Genre = ApplicationDbContext.Genres.ToList();
             return View("MovieForm", movieFormViewModel);
         }
+
+        [Authorize(Roles = "CanManageMovies")]
         public ActionResult New()
         {
             var movieFormViewModel = new MovieFormViewModel();
