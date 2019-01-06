@@ -256,6 +256,10 @@
     <Compile Include="Migrations\201901031450071_AddDrivingLicense.Designer.cs">
       <DependentUpon>201901031450071_AddDrivingLicense.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901061543506_AddRentals.cs" />
+    <Compile Include="Migrations\201901061543506_AddRentals.Designer.cs">
+      <DependentUpon>201901061543506_AddRentals.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -269,7 +273,8 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieFormViewModel.cs" />
     <Compile Include="Models\MovieRoles.cs" />
-    <Compile Include="Models\RentalModel.cs" />
+    <Compile Include="Models\NewRentalModel.cs" />
+    <Compile Include="Models\Rental.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -566,6 +571,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901031450071_AddDrivingLicense.resx">
       <DependentUpon>201901031450071_AddDrivingLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901061543506_AddRentals.resx">
+      <DependentUpon>201901061543506_AddRentals.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

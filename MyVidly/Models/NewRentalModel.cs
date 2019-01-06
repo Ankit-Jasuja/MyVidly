@@ -4,7 +4,7 @@ namespace MyVidly.Models
 {
     public class NewRentalModel
     {
-        public Movie Movie { get; set; }
-        public IEnumerable<Customer> Customers { get; set; }
+        public int CustomerId { get; set; }
+        public IEnumerable<int> MovieIdList { get; set; }
     }
 }
