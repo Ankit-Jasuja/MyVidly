@@ -27,5 +27,6 @@ namespace MyVidly.Models
         [DisplayName("Number In Stock")]
         [Required]
         public byte NumberInStock { get; set; }
+        public byte NumberAvailable { get; set; }
     }
 }
