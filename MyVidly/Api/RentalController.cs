@@ -18,11 +18,13 @@ namespace MyVidly.Api
         {
             foreach (var movieId in newRentalModel.MovieIdList)
             {
+                var movie = _applicationDbContext.Movies.ToList().Single(m => m.Id == movieId);
+                movie.NumberAvailable--;
                 var rental = new Rental
                 {
                     DateRented = DateTime.Today,
                     Customer = _applicationDbContext.Customers.ToList().Single(m => m.Id == newRentalModel.CustomerId),
-                    Movie = _applicationDbContext.Movies.ToList().Single(m => m.Id == movieId)
+                    Movie = movie
                 };
                 _applicationDbContext.Rentals.Add(rental);
             }
