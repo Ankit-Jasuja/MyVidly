@@ -16,14 +16,36 @@ namespace MyVidly.Api
         [HttpPost]
         public IHttpActionResult CreateNewRentals(NewRentalModel newRentalModel)
         {
-            foreach (var movieId in newRentalModel.MovieIdList)
+            if (!newRentalModel.MovieIdList.Any())
             {
-                var movie = _applicationDbContext.Movies.ToList().Single(m => m.Id == movieId);
+                return BadRequest("Movie Id list is empty");
+            }
+
+            var customer = _applicationDbContext.Customers.ToList().SingleOrDefault(m => m.Id == newRentalModel.CustomerId);
+            if (customer == null)
+            {
+                return BadRequest("Customer id is Invalid");
+            }
+
+            var moviesInDb = _applicationDbContext.Movies.Where(z => newRentalModel.MovieIdList.Contains(z.Id))
+                .ToList();
+
+            if (moviesInDb.Count != newRentalModel.MovieIdList.Count())
+            {
+                return BadRequest("one or more movie id is invalid");
+            }
+
+            foreach (var movie in moviesInDb)
+            {
+                if (movie.NumberAvailable == 0)
+                {
+                    return BadRequest("Movie is not available");
+                }
                 movie.NumberAvailable--;
                 var rental = new Rental
                 {
                     DateRented = DateTime.Today,
-                    Customer = _applicationDbContext.Customers.ToList().Single(m => m.Id == newRentalModel.CustomerId),
+                    Customer = customer,
                     Movie = movie
                 };
                 _applicationDbContext.Rentals.Add(rental);
