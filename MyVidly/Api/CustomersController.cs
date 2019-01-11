@@ -19,9 +19,14 @@ namespace MyVidly.Api
             _context = new ApplicationDbContext();
         }
 
-        public IEnumerable<Customer> GetCustomers()
+        public IEnumerable<Customer> GetCustomers(string query=null)
         {
-           return _context.Customers.Include(m=>m.MembershipType).ToList();
+           var customers = _context.Customers.Include(m => m.MembershipType);
+            if (query != null)
+            {
+                return customers.Where(z => z.Name.Contains(query));
+            }
+            return customers;
             //var customerDtoList = Mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerDto>>(customers);
             //return customerDtoList;
         }
