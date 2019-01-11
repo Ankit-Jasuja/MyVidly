@@ -15,9 +15,14 @@ namespace MyVidly.Api
         {
             _context = new ApplicationDbContext();
         }
-        public IEnumerable<Movie> GetMovies()
+        public IEnumerable<Movie> GetMovies(string query = null)
         {
-            return _context.Movies.Include(m=>m.Genre).ToList();
+            var movies = _context.Movies.Include(m => m.Genre).ToList();
+            if (query != null)
+            {
+                return movies.Where(z => z.Name.Contains(query));
+            }
+            return movies;
         }
         public IHttpActionResult GetMovie(int id)
         {
