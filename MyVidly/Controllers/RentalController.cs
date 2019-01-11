@@ -9,7 +9,7 @@ namespace MyVidly.Controllers
     public class RentalController : Controller
     {
         // GET: Rental
-        public ActionResult Index()
+        public ActionResult New()
         {
             return View();
         }
