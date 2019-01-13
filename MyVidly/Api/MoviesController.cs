@@ -17,7 +17,7 @@ namespace MyVidly.Api
         }
         public IEnumerable<Movie> GetMovies(string query = null)
         {
-            var movies = _context.Movies.Include(m => m.Genre).ToList();
+            var movies = _context.Movies.Include(m => m.Genre).Where(z=>z.NumberAvailable>0).ToList();
             if (query != null)
             {
                 return movies.Where(z => z.Name.Contains(query));

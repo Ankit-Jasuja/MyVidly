@@ -265,6 +265,18 @@
     <Compile Include="Migrations\201901061637130_AddNumberAvailabletoMovieTable.Designer.cs">
       <DependentUpon>201901061637130_AddNumberAvailabletoMovieTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901130947433_setIdasIntForRentalTable.cs" />
+    <Compile Include="Migrations\201901130947433_setIdasIntForRentalTable.Designer.cs">
+      <DependentUpon>201901130947433_setIdasIntForRentalTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901130958175_droprentaltable.cs" />
+    <Compile Include="Migrations\201901130958175_droprentaltable.Designer.cs">
+      <DependentUpon>201901130958175_droprentaltable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901130959541_createrentaltable.cs" />
+    <Compile Include="Migrations\201901130959541_createrentaltable.Designer.cs">
+      <DependentUpon>201901130959541_createrentaltable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -590,6 +602,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901061637130_AddNumberAvailabletoMovieTable.resx">
       <DependentUpon>201901061637130_AddNumberAvailabletoMovieTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901130947433_setIdasIntForRentalTable.resx">
+      <DependentUpon>201901130947433_setIdasIntForRentalTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901130958175_droprentaltable.resx">
+      <DependentUpon>201901130958175_droprentaltable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901130959541_createrentaltable.resx">
+      <DependentUpon>201901130959541_createrentaltable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
