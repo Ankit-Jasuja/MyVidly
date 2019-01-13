@@ -48,15 +48,14 @@
                         {
                             data: "Id",
                             render: function(data) {
-                                return "<button class='btn-link js-link' data-movie-id=" +data +">Delete</button>";
+                                return "<button class='btn-link js-link' data-movie-id=" + data + ">Delete</button>";
                            }
                         }
                     ]
                 }
             );
 
-            $(".js-link").on("click",
-                function() {
+            $("#movies").on("click", ".js-link", function () {
                     var button = $(this);
                     bootbox.confirm("Are you sure you want to delete this movie?",
                         function(result) {
