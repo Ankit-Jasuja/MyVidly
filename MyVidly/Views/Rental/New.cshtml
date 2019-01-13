@@ -10,7 +10,7 @@
     <div class="form-group">
         <label>Customer</label>
         <div class="tt-container">
-            <input id="customer" required type="text" value="" class="form-control" />
+            <input id="customer" required type="text" data-rule-validCustomer="true" value="" class="form-control" />
         </div>
     </div>
 
@@ -32,7 +32,7 @@
 
 @section scripts
 {
-    @Scripts.Render("~/ bundles / jqueryval")
+    @Scripts.Render("~/bundles/jqueryval")
     
     <script>
         $(document).ready(function () {
@@ -84,6 +84,10 @@
                     $("#movie").typeahead("val", "");
                     vm.MovieIdList.push(movie.Id);
                 });
+
+            jQuery.validator.addMethod("validCustomer", function () {
+                return vm.CustomerId && vm.CustomerId !== 0;
+            }, "Please select a valid customer.");
 
             $("#NewRental").validate({
                 submitHandler:function() {
