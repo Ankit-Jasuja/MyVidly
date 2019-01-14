@@ -10,14 +10,14 @@
     <div class="form-group">
         <label>Customer</label>
         <div class="tt-container">
-            <input id="customer" required type="text" data-rule-validCustomer="true" value="" class="form-control" />
+            <input id="customer" name="customers" required type="text" data-rule-validCustomer="true" value="" class="form-control" />
         </div>
     </div>
 
     <div class="form-group">
         <label>Movie</label>
         <div class="tt-container">
-            <input id="movie" type="text" class="form-control" />
+            <input id="movie" name="movies" type="text" data-rule-atLeastOneMovie="true" class="form-control" />
         </div>
     </div>
 
@@ -89,9 +89,12 @@
                 return vm.CustomerId && vm.CustomerId !== 0;
             }, "Please select a valid customer.");
 
+            $.validator.addMethod("atLeastOneMovie", function () {
+                return vm.MovieIdList.length > 0;
+            }, "Please select at least one movie.");
+
             $("#NewRental").validate({
                 submitHandler:function() {
-                    e.preventDefault();
                     $.ajax({
                             url: "/api/Rental/CreateNewRentals",
                             method: "post",
@@ -101,8 +104,9 @@
                             toastr.success("Rentals succesfully recorded");
                         })
                         .fail(function () {
-                            toastr.error("something unexpected unhappened")
+                            toastr.error("something unexpected happened");
                         });
+                    return false;
                 }
             });
         });
