@@ -33,9 +33,9 @@
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
-    
+
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             var vm = {
                 MovieIdList: []
             };
@@ -49,15 +49,15 @@
             });
 
             $('#customer').typeahead({
-                minlength: 3,
-                highlight: true
-            },
+                    minlength: 3,
+                    highlight: true
+                },
                 {
                     name: 'customers',
                     display: 'Name',
                     source: customers
                 }).on("typeahead:select",
-                function (e, customer) {
+                function(e, customer) {
                     vm.CustomerId = customer.Id;
                 });
 
@@ -71,39 +71,49 @@
             });
 
             $('#movie').typeahead({
-                minlength: 3,
-                highlight: true
-            },
+                    minlength: 3,
+                    highlight: true
+                },
                 {
                     name: 'movies',
                     display: 'Name',
                     source: movies
                 }).on("typeahead:select",
-                function (e, movie) {
+                function(e, movie) {
                     $("#movies").append("<li class='list-group-item'>" + movie.Name + "</li>");
                     $("#movie").typeahead("val", "");
                     vm.MovieIdList.push(movie.Id);
                 });
 
-            jQuery.validator.addMethod("validCustomer", function () {
-                return vm.CustomerId && vm.CustomerId !== 0;
-            }, "Please select a valid customer.");
+            jQuery.validator.addMethod("validCustomer",
+                function() {
+                    return vm.CustomerId && vm.CustomerId !== 0;
+                },
+                "Please select a valid customer.");
 
-            $.validator.addMethod("atLeastOneMovie", function () {
-                return vm.MovieIdList.length > 0;
-            }, "Please select at least one movie.");
+            $.validator.addMethod("atLeastOneMovie",
+                function() {
+                    return vm.MovieIdList.length > 0;
+                },
+                "Please select at least one movie.");
 
-            $("#NewRental").validate({
-                submitHandler:function() {
+          var validator=  $("#NewRental").validate({
+                submitHandler: function() {
                     $.ajax({
                             url: "/api/Rental/CreateNewRentals",
                             method: "post",
                             data: vm
                         })
-                        .done(function () {
+                        .done(function() {
                             toastr.success("Rentals succesfully recorded");
+                            $("#customer").typeahead("val", "");
+                            $("#movie").typeahead("val", "");
+                            $("#movies").empty();
+
+                            vm = { MovieIdList: [] };
+                            validator.resetForm();
                         })
-                        .fail(function () {
+                        .fail(function() {
                             toastr.error("something unexpected happened");
                         });
                     return false;
