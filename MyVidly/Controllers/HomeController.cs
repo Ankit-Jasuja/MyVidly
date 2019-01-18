@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 
 namespace MyVidly.Controllers
 {
@@ -12,6 +13,7 @@ namespace MyVidly.Controllers
 
         public ActionResult About()
         {
+            throw new Exception("BC");
             ViewBag.Message = "Your application description page.";
 
             return View();
